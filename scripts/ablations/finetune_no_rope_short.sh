@@ -86,6 +86,7 @@ export OMP_NUM_THREADS=1
 #             --row_nhead 8 \
 #             --row_num_cls 4 \
 #             --row_rope_base 100000 \
+#             --row_disable_rope True \
 #             --freeze_row False \
 #             --icl_num_blocks 12 \
 #             --icl_nhead 4 \
@@ -158,6 +159,7 @@ export PYTHONPATH="$REPO_DIR/src:${PYTHONPATH:-}"
     --row_nhead 8 \
     --row_num_cls 4 \
     --row_rope_base 100000 \
+    --row_disable_rope True \
     --freeze_row False \
     --icl_num_blocks 12 \
     --icl_nhead 4 \

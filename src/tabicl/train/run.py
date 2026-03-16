@@ -178,6 +178,7 @@ class Trainer:
             "row_nhead": self.config.row_nhead,
             "row_num_cls": self.config.row_num_cls,
             "row_rope_base": self.config.row_rope_base,
+            "row_disable_rope": getattr(self.config, "row_disable_rope", False),
             "icl_num_blocks": self.config.icl_num_blocks,
             "icl_nhead": self.config.icl_nhead,
             "ff_factor": self.config.ff_factor,
@@ -345,7 +346,11 @@ class Trainer:
         if "state_dict" not in checkpoint:
             raise ValueError("Checkpoint does not contain model state")
 
-        self.raw_model.load_state_dict(checkpoint["state_dict"])
+        result = self.raw_model.load_state_dict(checkpoint["state_dict"], strict=False)
+        if result.missing_keys:
+            print(f"Warning: Missing keys in checkpoint: {result.missing_keys}")
+        if result.unexpected_keys:
+            print(f"Warning: Unexpected keys in checkpoint (ignored): {result.unexpected_keys}")
 
         # Optionally load optimizer and scheduler state
         if self.config.only_load_model:
