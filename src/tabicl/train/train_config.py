@@ -187,6 +187,9 @@ def build_parser():
     parser.add_argument("--row_nhead", type=int, default=8, help="Number of attention heads in row interactor")
     parser.add_argument("--row_num_cls", type=int, default=4, help="Number of CLS tokens in row interactor")
     parser.add_argument("--row_rope_base", type=float, default=100000, help="RoPE base value for row interactor")
+    parser.add_argument(
+        "--row_disable_rope", default=False, type=str2bool, help="Whether to disable RoPE in the row interactor"
+    )
     parser.add_argument("--freeze_row", default=False, type=str2bool, help="Whether to freeze the row interactor")
 
     # ICL Config

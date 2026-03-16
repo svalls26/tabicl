@@ -103,6 +103,9 @@ class TabICL(nn.Module):
         If False, uses non-interleaved rotation where the embedding is split into
         first half [0:d//2] and second half [d//2:d].
 
+    row_disable_rope : bool, default=False
+        If True, disables rotary position encoding in the row interaction transformer.
+
     icl_num_blocks : int, default=12
         Number of transformer blocks in the in-context learning transformer.
 
@@ -169,6 +172,7 @@ class TabICL(nn.Module):
         row_num_cls: int = 4,
         row_rope_base: float = 100000,
         row_rope_interleaved: bool = False,
+        row_disable_rope: bool = False,
         icl_num_blocks: int = 12,
         icl_nhead: int = 8,
         icl_ssmax: Union[
@@ -217,6 +221,7 @@ class TabICL(nn.Module):
         self.row_num_cls = row_num_cls
         self.row_rope_base = row_rope_base
         self.row_rope_interleaved = row_rope_interleaved
+        self.row_disable_rope = row_disable_rope
         self.icl_num_blocks = icl_num_blocks
         self.icl_nhead = icl_nhead
         self.icl_ssmax = icl_ssmax
@@ -252,6 +257,7 @@ class TabICL(nn.Module):
             nhead=row_nhead,
             dim_feedforward=embed_dim * ff_factor,
             num_cls=row_num_cls,
+            use_rope=not row_disable_rope,
             rope_base=row_rope_base,
             rope_interleaved=row_rope_interleaved,
             dropout=dropout,
