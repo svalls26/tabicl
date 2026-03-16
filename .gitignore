@@ -119,46 +119,9 @@ dmypy.json
 .ruff_cache/
 
 # Developer environments
-.idea/
-.vscode/
-.DS_Store
-Thumbs.db
+.idea
+.vscode
 
-# =========================
-# TabICL / research outputs
-# =========================
-
-# Logs
-logs/
-*.log
-*.out
-*.err
-out.*
-nohup.out
-slurm-*.out
-slurm-*.err
-
-# Training checkpoints / model artifacts
-checkpoints/
-**/checkpoints/
-*.ckpt
-
-# Generated prior / synthetic training batches
-prior/
-**/prior/
-batch_*.pt
-
-# Experiment outputs
-wandb/
-lightning_logs/
-runs/
-outputs/
-results/
-artifacts/
-
-# Local caches / temp
-tmp/
-temp/
-cache/
-.huggingface/
-hf_cache/
+# sphinx-gallery generated files
+docs/sg_execution_times.rst
+docs/tutorials/
