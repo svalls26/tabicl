@@ -53,6 +53,9 @@ class TabICL(nn.Module):
     row_rope_base : float, default=100000
         Base scaling factor for rotary position encoding in the row interaction transformer
 
+    row_disable_rope : bool, default=False
+        If True, disables rotary position encoding in the row interaction transformer.
+
     icl_num_blocks : int, default=12
         Number of transformer blocks in the in-context learning transformer
 
@@ -83,6 +86,7 @@ class TabICL(nn.Module):
         row_nhead: int = 8,
         row_num_cls: int = 4,
         row_rope_base: float = 100000,
+        row_disable_rope: bool = False,
         icl_num_blocks: int = 12,
         icl_nhead: int = 4,
         ff_factor: int = 2,

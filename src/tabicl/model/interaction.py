@@ -36,6 +36,9 @@ class RowInteraction(nn.Module):
         Number of learnable CLS tokens to prepend to the feature embeddings. The outputs
         of these CLS tokens are concatenated for the final representation per row
 
+    use_rope : bool, default=True
+        Whether to use rotary positional encoding.
+        
     rope_base : float, default=100000
         Base scaling factor for rotary position encoding
 
@@ -57,6 +60,7 @@ class RowInteraction(nn.Module):
         nhead: int,
         dim_feedforward: int,
         num_cls: int = 4,
+        use_rope: bool = True,
         rope_base: float = 100000,
         dropout: float = 0.0,
         activation: str | callable = "gelu",
@@ -75,7 +79,7 @@ class RowInteraction(nn.Module):
             dropout=dropout,
             activation=activation,
             norm_first=norm_first,
-            use_rope=True,
+            use_rope=use_rope,
             rope_base=rope_base,
         )
 
